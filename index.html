@@ -3,26 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Bangaram!</title>
+    <title>Birthday Surprise for Bangaram!</title>
     <style>
         body {
-            background: url('pink-floral-background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
             font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+            color: #333;
         }
         h1 {
-            font-size: 50px;
-            margin-top: 20%;
+            text-align: center;
+            animation: fadeIn 2s; 
         }
-        p {
-            font-size: 25px;
+        @keyframes fadeIn {
+            from { opacity: 0; } 
+            to { opacity: 1; }
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e91e63;
+        }
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .confetti div {
+            position: absolute;
+            background-color: #ff4081;
+            opacity: 0.8;
+            width: 10px;
+            height: 10px;
+            animation: fall 5s infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(45deg);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Happy 20th Birthday Bangaram!</h1>
-    <p>You're not just a year older, you're a year wiser, a year more beautiful, and a year more fabulous! Happy Birthday to someone who lights up every room!</p>
+    <h1>🎉 Happy 20th Birthday Bangaram! 🎈</h1>
+    <button onclick="showMessage()">Click for a Surprise!</button>
+    <div class="confetti"></div>
+
+    <script>
+        function showMessage() {
+            alert('Wishing you a day filled with love, joy, and lots of cake! 🎂 Love you!');
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#ff4081', '#ffc107', '#4caf50', '#2196f3', '#9c27b0'];
+            const confettiContainer = document.querySelector('.confetti');
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+    </script>
 </body>
 </html>
